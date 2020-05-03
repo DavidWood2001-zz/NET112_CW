@@ -1,0 +1,33 @@
+﻿  maincpp.cpp
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(93,23): warning C4101: 'r14': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(94,10): warning C4101: 't0': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(94,26): warning C4101: 't4': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(94,18): warning C4101: 't2': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(92,10): warning C4101: 'r0': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(92,30): warning C4101: 'r5': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(92,18): warning C4101: 'r2': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(93,62): warning C4101: 'ex2': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(92,38): warning C4101: 'r7': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(94,14): warning C4101: 't1': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(93,67): warning C4101: 'ex3': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(93,14): warning C4101: 'r9': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(92,14): warning C4101: 'r1': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(95,9): warning C4101: 'j': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(95,6): warning C4101: 'i': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(93,57): warning C4101: 'ex1': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(92,26): warning C4101: 'r4': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(93,28): warning C4101: 'r15': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(96,6): warning C4101: 'temp': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(92,34): warning C4101: 'r6': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(92,22): warning C4101: 'r3': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(94,22): warning C4101: 't3': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(93,10): warning C4101: 'r8': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(94,30): warning C4101: 't5': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(93,18): warning C4101: 'r10': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(218,42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(264,42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(241,21): warning C4101: 'test2': unreferenced local variable
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(377,10): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(377,10): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\maincpp.cpp(377,10): message : the missing variadic argument 1 is required by format string '%s'
+  NET112_Coursework.vcxproj -> C:\Users\david\OneDrive - University of Plymouth\NET112\NET112_Coursework_C++\NET112_Coursework\Debug\NET112_Coursework.exe

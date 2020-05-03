@@ -20,6 +20,7 @@
 
 
 void Gaussian_Blur_AVX();
+void Gaussian_Blur_SSE();
 void Gaussian_Blur_default();
 bool compare_Gaussian_images();
 
@@ -57,9 +58,9 @@ char message[20];
 void print_message(char* s, bool outcome);
 
 //PLEASE AMEND THE DIRECTORY BELOW
-char in[100] = "C:\\Users\\david\\Downloads\\Practical_code_to_start\\rec.pgm";
-char out[100] = "C:\\Users\\david\\Downloads\\Practical_code_to_start\\filtered.pgm";
-char out2[100] = "C:\\Users\\david\\Downloads\\Practical_code_to_start\\gradient.pgm";
+char in[100] = "Images\\rec.pgm";
+char out[100] = "Images\\filtered.pgm";
+char out2[100] = "Images\\gradient.pgm";
 
 FILE* fin;
 errno_t err;

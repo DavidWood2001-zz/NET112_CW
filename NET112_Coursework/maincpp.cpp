@@ -130,20 +130,7 @@ void Gaussian_Blur_default() {
 }
 
 void Gaussian_Blur_SSE() {
-	short int row, col, rowOffset, colOffset;
-	short int newPixel;
 
-	for (row = 2; row < N - 2; row++) {
-		for (col = 2; col < M - 2; col++) {
-			newPixel = 0;
-			for (rowOffset = -2; rowOffset <= 2; rowOffset++) {
-				for (colOffset = -2; colOffset <= 2; colOffset++) {
-					newPixel += in_image[row + rowOffset][col + colOffset] * gaussianMask[2 + rowOffset][2 + colOffset];
-				}
-			}
-			filt_image[row][col] = newPixel / 159;
-		}
-	}
 }
 
 //returns false/true, when the output image is incorrect/correct, respectively
@@ -288,8 +275,6 @@ bool compare_Sobel_images() {
 }
 
 
-
-
 void read_image(char* filename, unsigned short int image[N][M])
 {
 	int inint = -1;
@@ -327,9 +312,6 @@ void read_image(char* filename, unsigned short int image[N][M])
 }
 
 
-
-
-
 void write_image(char* filename, unsigned short int image[N][M])
 {
 	FILE* foutput;
@@ -357,14 +339,6 @@ void write_image(char* filename, unsigned short int image[N][M])
 
 
 }
-
-
-
-
-
-
-
-
 
 
 void openfile(char* filename, FILE** finput)
