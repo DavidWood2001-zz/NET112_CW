@@ -147,7 +147,6 @@ void Gaussian_Blur_AVX() {
 			//newPixel += in_image[row + 2][col + 1] * gaussianMask[4][3];
 			//newPixel += in_image[row + 2][col + 2] * gaussianMask[4][4];
 
-
 			r0 = _mm256_castps_si256(_mm256_hadd_ps(_mm256_castsi256_ps(r0), _mm256_castsi256_ps(r0)));
 			r0 = _mm256_castps_si256(_mm256_hadd_ps(_mm256_castsi256_ps(r0), _mm256_castsi256_ps(r0)));
 
@@ -212,6 +211,7 @@ bool compare_Gaussian_images() {
 			newPixel = 0;
 			for (rowOffset = -2; rowOffset <= 2; rowOffset++) {
 				for (colOffset = -2; colOffset <= 2; colOffset++) {
+
 					newPixel += in_image[row + rowOffset][col + colOffset] * gaussianMask[2 + rowOffset][2 + colOffset];
 				}
 			}
