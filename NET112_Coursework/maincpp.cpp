@@ -30,7 +30,7 @@ int main() {
 	auto start = std::chrono::high_resolution_clock::now();
 
 	for (int it = 0; it != TIMES; it++) {
-		Gaussian_Blur_default();
+		Gaussian_Blur_AVX();
 	}
 
 	auto finish = std::chrono::high_resolution_clock::now();
@@ -89,85 +89,38 @@ void print_message(char* s, bool outcome) {
 void Gaussian_Blur_AVX() {
 	short int row, col;
 	short int newPixel;
-	__m256i r0, r1, r2, r3, r4, pR0, pR1, pR2, pR3, pR4;
+	__m256i r0, r1, r2, r3, r4, pR0, pR1, pR2, pR3, pR4, gR0, gR1, gR2;
+
+	gR0 = _mm256_set_epi16(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 5, 4, 2);
+	gR1 = _mm256_set_epi16(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 9, 12, 9, 4);
+	gR2 = _mm256_set_epi16(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 12, 15, 12, 5);
+
 
 	for (row = 2; row < N - 2; row++) {
 		for (col = 2; col < M - 2; col++) {
-
-			pR0 = _mm256_loadu_si256((__m256i*)in_image[row - 2]);
-			pR1 = _mm256_loadu_si256((__m256i*)in_image[row - 1]);
-			pR2 = _mm256_loadu_si256((__m256i*)in_image[row]);
-			pR3 = _mm256_loadu_si256((__m256i*)in_image[row + 1]);
-			pR4 = _mm256_loadu_si256((__m256i*)in_image[row + 2]);
+			pR0 = _mm256_loadu_si256((__m256i*) & in_image[row - 2][col - 2]);
+			pR1 = _mm256_loadu_si256((__m256i*) & in_image[row - 1][col - 2]);
+			pR2 = _mm256_loadu_si256((__m256i*) & in_image[row][col - 2]);
+			pR3 = _mm256_loadu_si256((__m256i*) & in_image[row + 1][col - 2]);
+			pR4 = _mm256_loadu_si256((__m256i*) & in_image[row + 2][col - 2]);
 
 			newPixel = 0;
+			r0 = _mm256_mullo_epi16(pR0, gR0);
+			r1 = _mm256_mullo_epi16(pR1, gR1);
+			r2 = _mm256_mullo_epi16(pR2, gR2);
+			r3 = _mm256_mullo_epi16(pR3, gR1);
+			r4 = _mm256_mullo_epi16(pR4, gR0);
 
-			r0 = _mm256_loadu_si256((__m256i*)gaussianMask[0]);
-			r0 = _mm256_mul_epi32(pR0, r0);
+			r0 = _mm256_add_epi16(r0, r1);
+			r2 = _mm256_add_epi16(r2, r3);
+			r0 = _mm256_add_epi16(r0, r2);
+			r0 = _mm256_add_epi16(r0, r4);
 
-			//newPixel += in_image[row - 2][col - 2] * gaussianMask[0][0];
-			//newPixel += in_image[row - 2][col - 1] * gaussianMask[0][1];
-			//newPixel += in_image[row - 2][col] * gaussianMask[0][2];
-			//newPixel += in_image[row - 2][col + 1] * gaussianMask[0][3];
-			//newPixel += in_image[row - 2][col + 2] * gaussianMask[0][4];
-
-			r1 = _mm256_loadu_si256((__m256i*)gaussianMask[1]);
-			r1 = _mm256_mul_epi32(pR1, r1);
-
-			//newPixel += in_image[row - 1][col - 2] * gaussianMask[1][0];
-			//newPixel += in_image[row - 1][col - 1] * gaussianMask[1][1];
-			//newPixel += in_image[row - 1][col] * gaussianMask[1][2];
-			//newPixel += in_image[row - 1][col + 1] * gaussianMask[1][3];
-			//newPixel += in_image[row - 1][col + 2] * gaussianMask[1][4];
-
-			r2 = _mm256_loadu_si256((__m256i*)gaussianMask[2]);
-			r2 = _mm256_mul_epi32(pR2, r2);
-
-			//newPixel += in_image[row][col - 2] * gaussianMask[2][0];
-			//newPixel += in_image[row][col - 1] * gaussianMask[2][1];
-			//newPixel += in_image[row][col] * gaussianMask[2][2];
-			//newPixel += in_image[row][col + 1] * gaussianMask[2][3];
-			//newPixel += in_image[row][col + 2] * gaussianMask[2][4];
-
-			r3 = _mm256_loadu_si256((__m256i*)gaussianMask[3]);
-			r3 = _mm256_mul_epi32(pR3, r3);
-
-			//newPixel += in_image[row + 1][col - 2] * gaussianMask[3][0];
-			//newPixel += in_image[row + 1][col - 1] * gaussianMask[3][1];
-			//newPixel += in_image[row + 1][col] * gaussianMask[3][2];
-			//newPixel += in_image[row + 1][col + 1] * gaussianMask[3][3];
-			//newPixel += in_image[row + 1][col + 2] * gaussianMask[3][4];
-
-			r4 = _mm256_loadu_si256((__m256i*)gaussianMask[4]);
-			r4 = _mm256_mul_epi32(pR4, r4);
-
-			//newPixel += in_image[row + 2][col - 2] * gaussianMask[4][0];
-			//newPixel += in_image[row + 2][col - 1] * gaussianMask[4][1];
-			//newPixel += in_image[row + 2][col] * gaussianMask[4][2];
-			//newPixel += in_image[row + 2][col + 1] * gaussianMask[4][3];
-			//newPixel += in_image[row + 2][col + 2] * gaussianMask[4][4];
-
-			r0 = _mm256_castps_si256(_mm256_hadd_ps(_mm256_castsi256_ps(r0), _mm256_castsi256_ps(r0)));
-			r0 = _mm256_castps_si256(_mm256_hadd_ps(_mm256_castsi256_ps(r0), _mm256_castsi256_ps(r0)));
-
-			r1 = _mm256_castps_si256(_mm256_hadd_ps(_mm256_castsi256_ps(r1), _mm256_castsi256_ps(r1)));
-			r1 = _mm256_castps_si256(_mm256_hadd_ps(_mm256_castsi256_ps(r1), _mm256_castsi256_ps(r1)));
-
-			r2 = _mm256_castps_si256(_mm256_hadd_ps(_mm256_castsi256_ps(r2), _mm256_castsi256_ps(r2)));
-			r2 = _mm256_castps_si256(_mm256_hadd_ps(_mm256_castsi256_ps(r2), _mm256_castsi256_ps(r2)));
-
-			r3 = _mm256_castps_si256(_mm256_hadd_ps(_mm256_castsi256_ps(r3), _mm256_castsi256_ps(r3)));
-			r3 = _mm256_castps_si256(_mm256_hadd_ps(_mm256_castsi256_ps(r3), _mm256_castsi256_ps(r3)));
-
-			r4 = _mm256_castps_si256(_mm256_hadd_ps(_mm256_castsi256_ps(r4), _mm256_castsi256_ps(r4)));
-			r4 = _mm256_castps_si256(_mm256_hadd_ps(_mm256_castsi256_ps(r4), _mm256_castsi256_ps(r4)));
-
-			newPixel += _mm256_cvtsi256_si32(r0);
-			newPixel += _mm256_cvtsi256_si32(r1);
-			newPixel += _mm256_cvtsi256_si32(r2);
-			newPixel += _mm256_cvtsi256_si32(r3);
-			newPixel += _mm256_cvtsi256_si32(r4);
-			newPixel = 0 - newPixel;
+			newPixel += _mm256_extract_epi16(r0, 0);
+			newPixel += _mm256_extract_epi16(r0, 1);
+			newPixel += _mm256_extract_epi16(r0, 2);
+			newPixel += _mm256_extract_epi16(r0, 3);
+			newPixel += _mm256_extract_epi16(r0, 4);
 
 			filt_image[row][col] = newPixel / 159;
 		}
